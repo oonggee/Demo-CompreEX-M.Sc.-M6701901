@@ -1,0 +1,801 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description"
+    content="P Care – Premium AI Pet Medical Center. Instant AI-powered diagnosis, treatment plans, vet booking, medicine delivery and 24/7 vet consultations for your beloved pets." />
+  <meta name="theme-color" content="#3B97D3" />
+  <title>P Care – Premium AI Pet Medical Center</title>
+  <link rel="icon" href="pcare_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       DESKTOP DEMO PANELS (hidden on small screens)
+  ═══════════════════════════════════════════ -->
+  <aside class="demo-panel demo-left" id="demo-left" aria-label="Demo navigator"></aside>
+  <aside class="demo-panel demo-right" id="demo-right" aria-label="Feature highlights"></aside>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · SPLASH
+  ═══════════════════════════════════════════ -->
+  <div id="screen-splash" class="screen active">
+    <div class="splash-blob b1"></div>
+    <div class="splash-blob b2"></div>
+    <div class="splash-center">
+      <div class="splash-logo-wrap">
+        <img src="pcare_logo.png" alt="P Care Logo" class="splash-logo" />
+        <div class="splash-pulse-ring"></div>
+        <div class="splash-pulse-ring ring2"></div>
+      </div>
+      <div class="splash-brand">P Care</div>
+      <div class="splash-tagline">Premium AI Pet Medical Center</div>
+      <div class="splash-bar"><span id="splash-bar-fill"></span></div>
+    </div>
+    <footer class="splash-footer">Powered by <span>Natchanon Jaruteekampron</span></footer>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · AUTH (REGISTER / LOGIN)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-auth" class="screen">
+    <div class="screen-inner auth-inner">
+      <div class="auth-hero">
+        <img src="pcare_logo.png" alt="P Care" class="auth-logo" />
+        <h1 class="auth-title">Welcome to P Care</h1>
+        <p class="auth-sub">Smart health care for the pets you love</p>
+      </div>
+
+      <div class="auth-tabs" id="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="auth-tab-login" role="tab" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" id="auth-tab-register" role="tab" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- Register Form -->
+      <div id="auth-form-register" class="auth-form" style="display:none">
+        <div class="input-group">
+          <label class="input-label" for="reg-name">Full Name</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <input type="text" class="field-input" id="reg-name" placeholder="Your full name" autocomplete="name" />
+          </div>
+          <div class="field-error" id="err-reg-name"></div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="reg-email">Email</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <input type="email" class="field-input" id="reg-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <div class="field-error" id="err-reg-email"></div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="reg-phone">Phone Number</label>
+          <div class="input-wrap phone-wrap">
+            <select class="country-select" id="reg-country">
+              <option value="+66">🇹🇭 +66</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+82">🇰🇷 +82</option>
+              <option value="+65">🇸🇬 +65</option>
+            </select>
+            <input type="tel" class="field-input phone-input" id="reg-phone" placeholder="081 234 5678" />
+          </div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="reg-pass">Password</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <input type="password" class="field-input" id="reg-pass" placeholder="Min 8 characters"
+              oninput="pwStrength(this.value)" autocomplete="new-password" />
+            <button type="button" class="pw-toggle" aria-label="Show password"
+              onclick="togglePw('reg-pass', this)">👁</button>
+          </div>
+          <div class="pw-meter"><span id="pw-meter-fill"></span></div>
+          <div class="field-error" id="err-reg-pass"></div>
+        </div>
+        <button class="btn-primary" id="btn-register" onclick="doRegister()">
+          <span class="btn-label">Create Account</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="auth-form-login" class="auth-form">
+        <div class="input-group">
+          <label class="input-label" for="login-email">Email</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            <input type="email" class="field-input" id="login-email" placeholder="you@email.com" autocomplete="email" />
+          </div>
+          <div class="field-error" id="err-login-email"></div>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="login-pass">Password</label>
+          <div class="input-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <input type="password" class="field-input" id="login-pass" placeholder="Password"
+              autocomplete="current-password" />
+            <button type="button" class="pw-toggle" aria-label="Show password"
+              onclick="togglePw('login-pass', this)">👁</button>
+          </div>
+          <div class="field-error" id="err-login-pass"></div>
+        </div>
+        <div class="auth-forgot" onclick="forgotPassword()">Forgot password?</div>
+        <button class="btn-primary" id="btn-login" onclick="doLogin()">
+          <span class="btn-label">Sign In</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+            <polyline points="10 17 15 12 10 7" />
+            <line x1="15" y1="12" x2="3" y2="12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="auth-divider"><span>or continue with</span></div>
+
+      <div class="social-btns two">
+        <button class="social-btn google" onclick="socialLogin('google')">
+          <svg viewBox="0 0 24 24" class="social-icon">
+            <path fill="#4285F4"
+              d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+            <path fill="#34A853"
+              d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+            <path fill="#FBBC05"
+              d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+            <path fill="#EA4335"
+              d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+          </svg>
+          Google
+        </button>
+        <button class="social-btn facebook" onclick="socialLogin('facebook')">
+          <svg viewBox="0 0 24 24" class="social-icon" fill="#1877F2">
+            <path
+              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+          Facebook
+        </button>
+      </div>
+
+      <button class="btn-demo" id="btn-demo" onclick="demoLogin()">
+        <span class="demo-spark">✨</span>
+        <span>
+          <strong>Try the Demo Account</strong>
+          <small>Skip sign-up · pre-loaded with 2 pets &amp; scan history</small>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · PET PROFILE (ADD PET)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-profile" class="screen">
+    <div class="screen-inner">
+      <div class="screen-header">
+        <div class="header-top-row">
+          <button class="back-btn" id="profile-back" aria-label="Back" onclick="profileBack()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="header-chip" id="profile-chip" style="margin:0">New Patient</div>
+        </div>
+        <h1 class="screen-title" id="profile-title">Who are we caring<br />for today?</h1>
+        <p class="screen-subtitle">Tell us about your furry friend</p>
+      </div>
+
+      <!-- Pet Photo Upload -->
+      <div class="pet-photo-upload" onclick="document.getElementById('pet-photo-input').click()">
+        <div class="pet-photo-preview" id="pet-photo-preview">
+          <div class="pet-photo-placeholder" id="pet-photo-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              class="photo-placeholder-icon">
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+            <span>Add Photo</span>
+          </div>
+          <img id="pet-photo-img" class="pet-photo-img" style="display:none" alt="Pet photo" />
+        </div>
+        <div class="pet-photo-edit-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="width:12px;height:12px">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+          </svg>
+        </div>
+        <input type="file" id="pet-photo-input" accept="image/*" style="display:none"
+          onchange="previewPetPhoto(this)" />
+      </div>
+
+      <!-- Pet Type Toggle -->
+      <div class="pet-toggle-wrap">
+        <div class="pet-toggle" id="pet-toggle">
+          <div class="toggle-slider" id="toggle-slider"></div>
+          <button class="toggle-btn active" id="btn-dog" onclick="selectPet('dog')">
+            <span class="toggle-emoji">🐶</span> Dog
+          </button>
+          <button class="toggle-btn" id="btn-cat" onclick="selectPet('cat')">
+            <span class="toggle-emoji">🐱</span> Cat
+          </button>
+        </div>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="form-stack">
+        <div class="form-row">
+          <div class="input-group">
+            <label class="input-label" for="pet-name">Pet's Name</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+              <input type="text" class="field-input" id="pet-name" placeholder="e.g. Mochi" maxlength="24" />
+            </div>
+            <div class="field-error" id="err-pet-name"></div>
+          </div>
+        </div>
+
+        <div class="form-row two-col">
+          <div class="input-group">
+            <label class="input-label" for="pet-age">Age</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <input type="number" inputmode="decimal" class="field-input" id="pet-age" placeholder="Years" min="0"
+                max="30" />
+            </div>
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="pet-weight">Weight (kg)</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="5" r="3" />
+                <path d="M6.5 8a2 2 0 0 0-1.905 1.38L3 13h18l-1.595-3.62A2 2 0 0 0 17.5 8h-11z" />
+                <path d="M3 13v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              </svg>
+              <input type="number" inputmode="decimal" class="field-input" id="pet-weight" placeholder="kg" step="0.1"
+                min="0" max="120" />
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">Gender</label>
+          <div class="chip-row" id="gender-chips">
+            <button type="button" class="chip active" data-g="Male" onclick="selectGender('Male')">♂ Male</button>
+            <button type="button" class="chip" data-g="Female" onclick="selectGender('Female')">♀ Female</button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="breed-search">Breed</label>
+          <div class="input-wrap select-wrap">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2 2c2.5 2.5 5 5 5 9s-2.5 6.5-5 9" />
+              <path d="M22 2c-2.5 2.5-5 5-5 9s2.5 6.5 5 9" />
+              <path d="M3.5 8h17" />
+              <path d="M3.5 16h17" />
+            </svg>
+            <input type="text" class="field-input" id="breed-search" placeholder="Search breed..."
+              oninput="filterBreeds(this.value)" onfocus="openBreedDropdown()" autocomplete="off" />
+            <svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="breed-dropdown" id="breed-dropdown"></div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="savePet()">
+        <span class="btn-label">Save &amp; Continue</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · SUBSCRIPTION PLANS
+  ═══════════════════════════════════════════ -->
+  <div id="screen-plans" class="screen">
+    <div class="screen-inner">
+      <div class="plans-top-row">
+        <button class="back-btn" aria-label="Back" onclick="plansBack()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div>
+          <div class="header-chip" id="plans-chip" style="margin-bottom:4px">Choose Your Plan</div>
+          <h1 class="screen-title" id="plans-title" style="font-size:22px;margin:0">Premium Care,<br />Your Way</h1>
+        </div>
+      </div>
+      <p class="screen-subtitle" id="plans-sub" style="margin-bottom:14px">Upgrade anytime. Cancel anytime.</p>
+
+      <!-- Billing Cycle Toggle -->
+      <div class="billing-switcher-wrap">
+        <div class="billing-switcher" role="radiogroup">
+          <button type="button" class="billing-opt active" id="billing-monthly"
+            onclick="setBillingCycle('monthly')">Monthly</button>
+          <button type="button" class="billing-opt" id="billing-yearly" onclick="setBillingCycle('yearly')">
+            Annual <span class="save-badge">Save 20%</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="plans-stack">
+
+        <div class="plan-card" id="plan-0" onclick="selectPlan(0)">
+          <div class="plan-selected-check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div class="plan-top">
+            <div class="plan-badge free">Free</div>
+            <div class="plan-name">Essential</div>
+            <div class="plan-price"><span class="plan-currency">$</span><span id="price-val-0">0</span><span
+                class="plan-period" id="period-val-0">/mo</span></div>
+          </div>
+          <ul class="plan-features">
+            <li>Basic Pet Profile</li>
+            <li>1 AI Scan / month</li>
+            <li class="text-muted">Health Log &amp; Reminders</li>
+          </ul>
+        </div>
+
+        <div class="plan-card" id="plan-1" onclick="selectPlan(1)">
+          <div class="plan-selected-check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div class="plan-top">
+            <div class="plan-badge starter">Starter</div>
+            <div class="plan-name">Care Plus</div>
+            <div class="plan-price"><span class="plan-currency">$</span><span id="price-val-1">5</span><span
+                class="plan-period" id="period-val-1">/mo</span></div>
+          </div>
+          <ul class="plan-features">
+            <li>Weekly AI Scans (4 / month)</li>
+            <li>Full Health Log &amp; Vaccine Tracker</li>
+            <li>Email Health Summaries</li>
+          </ul>
+        </div>
+
+        <div class="plan-card popular" id="plan-2" onclick="selectPlan(2)">
+          <div class="plan-selected-check"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-top">
+            <div class="plan-badge pro">Pro</div>
+            <div class="plan-name">Protection</div>
+            <div class="plan-price"><span class="plan-currency">$</span><span id="price-val-2">10</span><span
+                class="plan-period" id="period-val-2">/mo</span></div>
+          </div>
+          <ul class="plan-features">
+            <li>Unlimited AI Scans</li>
+            <li>Detailed PDF Doctor Reports</li>
+            <li>Priority AI Analysis Response</li>
+          </ul>
+        </div>
+
+        <div class="plan-card vip" id="plan-3" onclick="selectPlan(3)">
+          <div class="plan-selected-check gold-check"><svg viewBox="0 0 24 24" fill="none" stroke="white"
+              stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg></div>
+          <div class="vip-shimmer"></div>
+          <div class="vip-top-row">
+            <div class="plan-badge vip-badge">VET VIP</div>
+            <div class="vip-crown">👑</div>
+          </div>
+          <div class="plan-name vip-name">Ultimate Concierge</div>
+          <div class="plan-price"><span class="plan-currency gold">$</span><span class="gold"
+              id="price-val-3">50</span><span class="plan-period gold" id="period-val-3">/mo</span></div>
+          <div class="vip-feature-hero">
+            <div class="vip-call-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="vip-icon">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              24/7 Live Vet Consultation
+            </div>
+          </div>
+          <ul class="plan-features vip-features">
+            <li>Everything in Pro</li>
+            <li>Video &amp; Voice Call with a Vet</li>
+            <li>Dedicated Pet Specialist</li>
+            <li>Free Priority Drug Delivery</li>
+          </ul>
+          <div class="vip-recommend-badge">⭐ Recommended for Seniors &amp; Puppies</div>
+        </div>
+
+      </div>
+
+      <button type="button" class="plans-compare-btn" onclick="openPlanComparison()">
+        <span>Compare all plan features</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+
+      <button class="btn-primary" id="plans-cta-btn" style="opacity:.5;pointer-events:none" onclick="planContinue()">
+        <span class="btn-label">Select a Plan to Continue</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <div class="trust-badges">
+        <div class="trust-item">
+          <span>🩺 Certified Vets</span>
+          <small>Licensed doctors</small>
+        </div>
+        <div class="trust-item">
+          <span>🔒 Cancel Anytime</span>
+          <small>No lock-in contract</small>
+        </div>
+        <div class="trust-item">
+          <span>⚡ Instant Access</span>
+          <small>Active immediately</small>
+        </div>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Can I switch or cancel my plan anytime?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-a">Yes! You can upgrade, downgrade, or cancel your subscription at any time directly in your
+            profile settings without any penalty or hidden fees.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>How does the 24/7 Vet Consultation work?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-a">VIP members can tap the Tele-Vet button in the chat or dashboard anytime to connect via HD
+            video or audio call with licensed veterinarians.</div>
+        </div>
+        <div class="faq-item" onclick="toggleFaq(this)">
+          <div class="faq-q">
+            <span>Can I cover multiple pets under one plan?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </div>
+          <div class="faq-a">Pro and VIP plans support unlimited pets in your household. Care Plus covers up to 2 pets.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · PAYMENT
+  ═══════════════════════════════════════════ -->
+  <div id="screen-payment" class="screen">
+    <div class="screen-inner pay-inner">
+      <div class="screen-header" style="margin-bottom:18px">
+        <button class="back-btn" aria-label="Back" onclick="goToScreen('screen-plans')" style="margin-bottom:16px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div class="header-chip">Secure Checkout</div>
+        <h1 class="screen-title">Complete your<br />subscription</h1>
+      </div>
+      <div id="pay-body"></div>
+    </div>
+    <div class="pay-footer">
+      <button class="btn-primary" id="pay-confirm-btn" onclick="confirmPayment()">
+        <span class="btn-label">Confirm Payment</span>
+      </button>
+      <div class="pay-secure">🔒 256-bit encrypted · Demo mode, no real charge</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · AI SCAN
+  ═══════════════════════════════════════════ -->
+  <div id="screen-scan" class="screen">
+    <div class="scan-fullscreen">
+      <div class="scan-bg"></div>
+
+      <div class="scan-header-bar">
+        <button class="scan-back-btn" aria-label="Back" onclick="leaveScan()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="scan-pet-chip" id="scan-pet-chip" onclick="openPetPicker()" aria-label="Choose pet">
+          <span class="spc-avatar" id="scan-pet-avatar">🐶</span>
+          <span id="scan-pet-name">Mochi</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:12px;height:12px">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <button class="scan-ctrl-btn secondary scan-flash" id="scan-flash-btn" title="Brighten" onclick="toggleFlash()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="scan-meta-row">
+        <div class="scan-mode-badge" id="scan-mode-badge">Skin Mode</div>
+        <div class="scan-quota" id="scan-quota">∞ Unlimited scans</div>
+      </div>
+
+      <div class="viewfinder-wrap">
+        <div class="viewfinder" id="viewfinder">
+          <img id="vf-photo" class="vf-photo" alt="" style="display:none" />
+          <video id="vf-video" class="vf-video" playsinline muted style="display:none"></video>
+          <div class="scan-grid"></div>
+          <div class="vf-corner tl"></div>
+          <div class="vf-corner tr"></div>
+          <div class="vf-corner bl"></div>
+          <div class="vf-corner br"></div>
+          <div class="scan-line" id="scan-line"></div>
+          <div class="vf-pet-preview">
+            <div class="vf-pet-circle" id="vf-pet-circle">🐶</div>
+          </div>
+          <div class="vf-reticle" id="vf-reticle"><span id="vf-reticle-label">Skin</span></div>
+          <div class="vf-analyzing" id="vf-analyzing">
+            <div class="vf-pct" id="vf-pct">0%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scan-status-bar">
+        <div class="scan-status-text" id="scan-status-text">Align the guides with your pet's skin &amp; hold still</div>
+        <div class="scan-progress-bar">
+          <div class="scan-progress-fill" id="scan-progress"></div>
+        </div>
+      </div>
+
+      <div class="scan-part-selector" id="scan-part-selector">
+        <button class="scan-part-btn" onclick="selectScanPart(this, 'Eyes')">Eyes</button>
+        <button class="scan-part-btn" onclick="selectScanPart(this, 'Ear')">Ear</button>
+        <button class="scan-part-btn active" onclick="selectScanPart(this, 'Skin')">Skin</button>
+        <button class="scan-part-btn" onclick="selectScanPart(this, 'Dental')">Dental</button>
+        <button class="scan-part-btn" onclick="selectScanPart(this, 'Motion')">Motion</button>
+      </div>
+
+      <div class="scan-controls">
+        <div class="scan-side">
+          <button class="scan-ctrl-btn" aria-label="Upload photo"
+            onclick="document.getElementById('scan-file').click()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="3" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </button>
+          <span>Gallery</span>
+        </div>
+        <input type="file" id="scan-file" accept="image/*" style="display:none" onchange="pickScanImage(this)" />
+        <button class="scan-capture-btn" id="scan-capture-btn" aria-label="Start scan" onclick="startScan()">
+          <span class="capture-inner"></span>
+        </button>
+        <div class="scan-side">
+          <button class="scan-ctrl-btn" id="scan-cam-btn" aria-label="Live camera" onclick="toggleCamera()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7" />
+              <rect x="1" y="5" width="15" height="14" rx="2" />
+            </svg>
+          </button>
+          <span id="scan-cam-label">Camera</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · MEDICAL RESULT (rendered by JS)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-result" class="screen">
+    <div class="screen-inner result-inner" id="result-body"></div>
+    <div class="result-cta-stack" id="result-cta"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · HOME (rendered by JS)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-home" class="screen">
+    <div class="screen-inner" id="home-body"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · HEALTH SUMMARY (rendered by JS)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-health" class="screen">
+    <div class="screen-inner" id="health-body"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · CHATBOT
+  ═══════════════════════════════════════════ -->
+  <div id="screen-chat" class="screen">
+    <div class="chat-fullscreen">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">🤖</div>
+          <div>
+            <div class="chat-name">PetCare AI</div>
+            <div class="chat-status"><span class="chat-online-dot"></span><span id="chat-status-text">Online · replies
+                instantly</span></div>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-icon-btn tele" aria-label="Tele-Vet" title="Tele-Vet" onclick="teleVet()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </button>
+          <button class="chat-clear-btn" aria-label="Clear chat" onclick="clearChat()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+              <path d="M10 11v6M14 11v6" />
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="vip-call-banner" id="vip-call-banner" style="display:none">
+        <div class="vcb-text">
+          <span class="vcb-badge">👑 VET VIP</span>
+          <span>Speak with Dr. Suchada now</span>
+        </div>
+        <div class="vcb-btns">
+          <button class="vcb-btn voice" onclick="startCall('voice')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="width:16px;height:16px">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            Call
+          </button>
+          <button class="vcb-btn video" onclick="startCall('video')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="width:16px;height:16px">
+              <polygon points="23 7 16 12 23 17 23 7" />
+              <rect x="1" y="5" width="15" height="14" rx="2" />
+            </svg>
+            Video
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <div class="chat-chips" id="chat-chips"></div>
+
+      <div class="chat-input-bar">
+        <button class="chat-upload-btn" aria-label="Attach photo"
+          onclick="document.getElementById('chat-photo-input').click()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:20px;height:20px">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+        </button>
+        <input type="file" id="chat-photo-input" accept="image/*" style="display:none" onchange="sendChatImage(this)">
+        <input type="text" class="chat-input" id="chat-input" placeholder="พิมพ์ข้อความหรือส่งรูปภาพ..."
+          onkeydown="if(event.key==='Enter')sendChat()" />
+        <button class="chat-send-btn" aria-label="Send" onclick="sendChat()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" style="width:20px;height:20px">
+            <line x1="22" y1="2" x2="11" y2="13" />
+            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCREEN · OWNER PROFILE (rendered by JS)
+  ═══════════════════════════════════════════ -->
+  <div id="screen-owner" class="screen">
+    <div class="screen-inner" id="owner-body"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       BOTTOM TAB BAR
+  ═══════════════════════════════════════════ -->
+  <nav class="bottom-nav hidden" id="bottom-nav" aria-label="Main navigation">
+    <button class="nav-tab active" id="tab-home" onclick="navTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="nav-tab" id="tab-health" onclick="navTo('health')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+      <span>Health</span>
+    </button>
+    <button class="nav-tab" id="tab-scan" onclick="navTo('scan')">
+      <div class="scan-nav-fab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </div>
+      <span>Scan</span>
+    </button>
+    <button class="nav-tab" id="tab-chat" onclick="navTo('chat')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span>AI Chat</span>
+    </button>
+    <button class="nav-tab" id="tab-profile" onclick="navTo('owner')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+      <span>Profile</span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       OVERLAYS (moved inside phone shell by JS)
+  ═══════════════════════════════════════════ -->
+  <div class="toast-stack shell-item" id="toast-stack" aria-live="polite"></div>
+  <div class="sheet-backdrop shell-item" id="sheet-backdrop" onclick="closeSheet()"></div>
+  <div class="sheet shell-item" id="sheet" role="dialog" aria-modal="true">
+    <div class="sheet-handle"></div>
+    <div id="sheet-body"></div>
+  </div>
+  <div class="call-overlay shell-item" id="call-overlay"></div>
+  <div class="proc-overlay shell-item" id="proc-overlay">
+    <div class="proc-card">
+      <div class="proc-spinner"></div>
+      <div id="proc-text">Processing…</div>
+    </div>
+  </div>
+  <div class="confetti-layer shell-item" id="confetti"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
